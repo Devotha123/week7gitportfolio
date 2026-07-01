@@ -6,7 +6,7 @@ on:
 
 jobs:
     build:
-        runs-on : ubuntu:latest # macos , windows-latest
+        runs-on : ubuntu-latest # macos , windows-latest
         steps:
           - name: clone the code
             uses: actions/checkout@v4
@@ -14,7 +14,7 @@ jobs:
             run:
                 docker build -t devotha568/cicd-portfolio .
           - name:  docker login
-            uses: docker/login-actions@v3
+            uses: docker/login-action@v3
             with:
                 username: devotha568
                 password: ${{secrets.DOCKER_PASS}}
