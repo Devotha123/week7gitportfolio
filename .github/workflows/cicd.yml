@@ -1,0 +1,23 @@
+name: my fisrt pipeline
+
+on:
+    push:
+        branches:  ["main"]
+
+jobs:
+    build:
+        runs-on : ubuntu:latest # macos , windows-latest
+        steps:
+          - name: clone the code
+            uses: actions/checkout@v4
+          - name : build image
+            run:
+                docker build -t devotha568/cicd-portfolio .
+          - name:  docker login
+            uses: docker/login-actions@v3
+            with:
+                username: devotha568
+                password: ${{secrets.DOCKER_PASS}}
+          - name: push image
+            run:
+                docker push devotha568/cicd-portfolio    
